@@ -27,6 +27,10 @@ public:
 	Time operator++(int);
 	Time operator--();
 	Time operator--(int);
+	bool operator>(Time& right);
+	bool operator<(Time& right);
+	friend std::ostream& operator<<(std::ostream& str, const Time& obj);
+	operator int();
 };
 #endif
 

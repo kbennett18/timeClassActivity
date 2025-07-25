@@ -6,6 +6,10 @@ void testTimeAssignment();
 void testTimeSimplify();
 void timeTestAdd();
 void timeTestSubtract();
+void timeTestPlusPlus();
+void timeTestRelationalOperator();
+void timeTestExtractionOperator();
+void timeTestIntegerConversion();
 
 int main()
 {
@@ -13,6 +17,11 @@ int main()
 	//testTimeSimplify();
 	//timeTestAdd();
 	//timeTestSubtract();
+	//timeTestPlusPlus();
+	//timeTestRelationalOperator();
+	//timeTestExtractionOperator();
+	//timeTestIntegerConversion();
+
 }
 
 void testTimeAssignment()
@@ -69,32 +78,36 @@ void timeTestSubtract()
 		" : " << later.getMin() << " " << later.getSec() << endl;
 }
 
-Time Time::operator++()
+void timeTestPlusPlus()
 {
-	sec++;
-	simplify();
-	return *this;
+	Time now(11, 24, 59);
+
+	for (int i = 0; i < 100; i++)
+	{
+		now++;
+		cout << now.getDay() << " " << now.getHour() <<
+			" : " << now.getMin() << " " << now.getSec() << endl;
+	}
 }
 
-Time Time::operator++(int)
+void timeTestRelationalOperator()
 {
-	Time oldTime = *this;
-	sec++;
-	simplify();
-	return oldTime;
+	Time now(11, 59);
+	Time later(1, 1, 1, 1);
+
+	cout << (now < later) << endl;
+	cout << (now > later) << endl;
 }
 
-Time Time::operator--()
+void timeTestExtractionOperator()
 {
-	sec--;
-	simplify();
-	return *this;
+	Time now(0, 12, 17, 32);
+	cout << now;
 }
 
-Time Time::operator--(int)
+void timeTestIntegerConversion()
 {
-	Time oldTime = *this;
-	sec--;
-	simplify();
-	return oldTime;
+	Time tomorrowsClass(1, 9, 40, 0);
+	cout << static_cast<int>(tomorrowsClass) << endl;
 }
+
